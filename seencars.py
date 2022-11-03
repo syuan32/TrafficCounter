@@ -173,10 +173,6 @@ def findLeastCarsInThreeHalfHour(df: pd.DataFrame) -> list:
             # if the window has not included three elements
             right += 1
 
-    # if least_sum is not updated, meaning there is no continuous 1.5 hours in the given data
-    if least_sum == float('inf'):
-        least_sum = 0
-
     # if start is not a empty string, meaning that we find a valid least sum
     # then update the end time by adding 1.5 hours to the start
     if start != '':
@@ -188,7 +184,7 @@ def findLeastCarsInThreeHalfHour(df: pd.DataFrame) -> list:
 
 # print least cars in continuous 1.5 hours
 def printLeastCars(start: str, end: str, least_sum: int):
-    if least_sum == 0:
+    if start == '':
         print(
             'The file does not contain any sets of data which are continuous for 1.5 hours!')
     else:
