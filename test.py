@@ -13,6 +13,11 @@ class unitTest(unittest.TestCase):
         self.df1 = pd.read_csv('data/data1.csv', sep=' ', header=None)
         self.df1.columns = ['time', 'counts']
 
+        # crate dataframe from 'data/data2.csv' with least three counts are in two different days
+        self.df2 = pd.read_csv('data/data2.csv', sep=' ', header=None)
+        self.df2.columns = ['time', 'counts']
+
+
     def tearDown(self):
         # Executed after reach test
         pass
@@ -42,8 +47,20 @@ class unitTest(unittest.TestCase):
 
     # test the array result from findLeastCarsInThreeHalfHour function
     def test_find_least_cars_in_three_half_hours(self):
+        # three counts in the same day with df
         self.assertEqual(31, findLeastCarsInThreeHalfHour(self.df)[2])
-        self.assertEqual(0, findLeastCarsInThreeHalfHour(self.df1)[2])
+
+        # no three counts founded with df1
+        self.assertEqual('', findLeastCarsInThreeHalfHour(self.df1)[0])
+
+        # three counts in two days with df2
+        self.assertEqual('2021-12-08T23:00:00',
+                         findLeastCarsInThreeHalfHour(self.df2)[0])
+        self.assertEqual('2021-12-09T00:30:00',
+                         findLeastCarsInThreeHalfHour(self.df2)[1])
+        self.assertEqual(4, findLeastCarsInThreeHalfHour(self.df2)[2])
+        
+
     
     # test the reading file error when executing countingCars function
     def test_read_file_error_counting_cars(self):
