@@ -49,10 +49,3 @@ Ran 5 tests in 0.010s
 OK
 ```
 
-
-
-
-
-
-# TrafficCounter
-# TrafficCounter
